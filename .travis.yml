@@ -6,3 +6,12 @@ services:
 script:
   - docker build -t ramalaso/node .
   - docker images ramalaso/node
+
+before_deploy:
+  - docker login -u <username> -p <password>
+
+deploy:
+  provider: script
+  script: docker push ramalaso/node
+  on: 
+    branch: master
