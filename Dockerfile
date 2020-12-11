@@ -1,12 +1,16 @@
 FROM node
 
-WORKDIR /app
+RUN mkdir /usr/src/app
 
-COPY package*.json ./app
+WORKDIR /usr/src/app
+
+ENV PATH /usr/sc/app/node_modules/.bin:$PATH
+
+COPY package*.json /usr/src/app
 
 RUN npm install
 
-COPY . /app/
+COPY . /usr/src/app
 
 EXPOSE 4000
 CMD [ "npm", "start"]
